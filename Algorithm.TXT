@@ -1,0 +1,30 @@
+
+Algorithm:
+===========
+
+Algorithm to find the winner(s) of main election is as follows:
+
+1) Generate a random number between 0.0 and 1.0 . The probability of any number that can be generated is 0.00000000000000001. Thus, the number that was generated is completely random.
+2) We have a probability that the random number may be between a certain range, as the sum of probabilities of numbers within that range
+	This means that the probability that a random number is between 0.0 and 1.0 is 1
+	and the probability that the random number is between 0.1 and 0.3 is 0.2 which is the sum of probabilities of all numbers within 0.1 and 0.3
+3) We can use this phenomena to assign votes. Firstly, give each candidate their 'range'. 
+	Meaning that if two candidates have probabilities 0.3 and 0.7. Then the range 0.0-0.3 is assigned to candidate one. And 0.3-1.0 is assigned to candidate 2
+	For each vote, generate a random number.
+	Now the probability that random number is between 0.0 and 0.3 is 0.3, which is same as probability of vote given to candidate 1
+	and probability that random number is between 0.3 and 1.0 is 0.7, which is same as probability of vote given to candidate 2
+	
+	Thus, this way we can assign votes. The vote is given to the candidate within whose range the random number falls. 
+	Meaning that if 0.3 is probability of getting a vote of candidate, then 0.3 is also the probability of random number falling between 0.0 and 0.3.
+	So vote is assigned to candidate if it falls in the assigned range because the random number being in that range had the same probability as the vote being given to that candidate
+
+	Probability that a vote will go to a candidate is the probability that a random number between 0-1 is in a range with length equal to that probability.
+
+4) For each vote, we figure out who the vote goes to and increase that candidates number of votes using above assignment
+5) Calculate the top two number of votes
+6) if the top number of votes is reater than 50% of the votes, then winner is the person who got those votes.
+7) Else if the top number of votes is less than 50% of votes, then we will have a runoff election between candidates with the highest score. If there is only one candidate with highest votes, then runoff election will be held between that candidate and the candidate(s) with second highest number of votes.
+
+Algorithm for finding winner(s) of runoff election is the same as that of main election. Runoff election occurs only between the winning candidates from main election, and continues further reelection until a winner is found.
+Before a runoff election occurs, the probability that a candidate will get a vote is re-evaluated. The total probability left behind by dropping of other non-winning candidates is equally distruibuted to probability of the winning candidates.
+
